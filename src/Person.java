@@ -9,9 +9,9 @@ abstract public class Person {
     private LocalDate dateOfBirth;
     private String gender;
     private Set<String> phoneNumber =  new HashSet<String>();
-    public static int totalPersonCount;
+    private Address homeAddress;
 
-    public Person(String name, String middleName, String surname, LocalDate dateOfBirth, String gender) {
+    public Person(String name, String middleName, String surname, LocalDate dateOfBirth, String gender, Address homeAddress) {
         Validation.validateString(name, "Person name cannot be empty or null.");
         Validation.validateString(surname, "Person surname cannot be empty or null.");
         Validation.validateString(gender, "Person gender cannot be empty or null.");
@@ -22,7 +22,7 @@ abstract public class Person {
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
-        totalPersonCount++;
+        this.homeAddress = homeAddress;
     }
 
     public String getName() {
@@ -75,10 +75,6 @@ abstract public class Person {
         return Collections.unmodifiableSet(this.phoneNumber);
     }
 
-    public static int getTotalPersonCount() {
-        return totalPersonCount;
-    }
-
     public void scheduleAppointment(Date appointmentDate) {
         scheduleAppointment(appointmentDate, "-");
     }
@@ -93,14 +89,5 @@ abstract public class Person {
 
     public String getDetails(){
         return "Name: " + name + " Surname: " + surname + " Gender: " + gender;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", gender='" + gender + '\'' +
-                '}';
     }
 }
