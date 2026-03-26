@@ -88,6 +88,6 @@ abstract public class Person {
     }
 
     public String getDetails(){
-        return "Name: " + name + " Surname: " + surname + " Gender: " + gender;
+        return "Name: " + name + " - Surname: " + surname + " - Gender: " + gender;
     }
 }

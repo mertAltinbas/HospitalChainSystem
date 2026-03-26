@@ -14,6 +14,6 @@ public class Patient extends Person {
 
     @Override
     public String getDetails(){
-        return super.getDetails() + " Patient";
+        return super.getDetails() + " - Patient";
     }
 }
