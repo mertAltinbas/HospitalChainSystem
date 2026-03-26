@@ -1,10 +1,13 @@
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private String country;
     private String city;
     private String street;
     private String apartmentNumber;
     private String postalCode;
 
+    /*
     public Address(String country, String city, String street, String apartmentNumber, String postalCode) {
         Validation.validateString(country, "country");
         Validation.validateString(city, "city");
@@ -18,6 +21,7 @@ public class Address {
         this.apartmentNumber = apartmentNumber;
         this.postalCode = postalCode;
     }
+     */
 
     public String getCountry() {
         return country;

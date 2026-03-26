@@ -2,7 +2,12 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-abstract public class Person {
+abstract public class Person implements Extent {
+    private static final String FILE_NAME = "Person.ser";
+    private static ArrayList<Person> personList = new ArrayList<>();
+
+    static { loadPerson(); }
+
     private String name;
     private String middleName;
     private String surname;
@@ -89,5 +94,17 @@ abstract public class Person {
 
     public String getDetails(){
         return "Name: " + name + " - Surname: " + surname + " - Gender: " + gender;
+    }
+
+    public static void loadPerson(){
+        personList = Extent.loadClassList(FILE_NAME);
+    }
+
+    public static List<Person> getPersonList(){
+        return Extent.getImmutableClassList(personList);
+    }
+
+    public static void savePerson(){
+        Extent.saveClassList(FILE_NAME, personList);
     }
 }

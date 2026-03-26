@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            Address address1 = new Address("USA", "New York", "Broadway", "5A", "10001");
-            Address address2 = new Address("UK", "London", "Baker Street", "221B", "NW1 6XE");
+            Address address1 = new Address();
+            Address address2 = new Address();
             LocalDate dob1 = LocalDate.of(1985, 8, 15);
             LocalDate dob2 = LocalDate.of(1992, 11, 23);
 
