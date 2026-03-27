@@ -28,6 +28,8 @@ abstract public class Person implements Extent {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.homeAddress = homeAddress;
+
+        personList.add(this);
     }
 
     public String getName() {
@@ -35,7 +37,9 @@ abstract public class Person implements Extent {
     }
 
     public void setName(String name) {
+        Validation.validateString(name, "Person name cannot be empty or null.");
         this.name = name;
+        savePerson();
     }
 
     public Optional<String> getMiddleName() {
@@ -44,6 +48,7 @@ abstract public class Person implements Extent {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+        savePerson();
     }
 
     public String getSurname() {
@@ -51,7 +56,9 @@ abstract public class Person implements Extent {
     }
 
     public void setSurname(String surname) {
+        Validation.validateString(surname, "Person surname cannot be empty or null.");
         this.surname = surname;
+        savePerson();
     }
 
     public LocalDate getDateOfBirth() {
@@ -59,7 +66,9 @@ abstract public class Person implements Extent {
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
+        Validation.validateBirthDate(dateOfBirth, "Person dateOfBirth cannot be empty or null.");
         this.dateOfBirth = dateOfBirth;
+        savePerson();
     }
 
     public String getGender() {
@@ -67,12 +76,15 @@ abstract public class Person implements Extent {
     }
 
     public void setGender(String gender) {
+        Validation.validateString(gender, "Person gender cannot be empty or null.");
         this.gender = gender;
+        savePerson();
     }
 
     public void addPhoneNumber(String phoneNumber) {
         if (phoneNumber != null && !phoneNumber.trim().isEmpty()) {
             this.phoneNumber.add(phoneNumber);
+            savePerson();
         }
     }
 
