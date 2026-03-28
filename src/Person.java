@@ -29,6 +29,7 @@ abstract public class Person implements Extent {
         this.gender = gender;
         this.homeAddress = homeAddress;
 
+        if (personList.contains(this)) return;
         personList.add(this);
         savePerson();
     }
@@ -119,5 +120,22 @@ abstract public class Person implements Extent {
 
     public static void savePerson(){
         Extent.saveClassList(FILE_NAME, personList);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person other = (Person) o;
+        return Objects.equals(getName(), other.getName())
+                && Objects.equals(getMiddleName(), other.getMiddleName())
+                && Objects.equals(getSurname(), other.getSurname())
+                && Objects.equals(getDateOfBirth(), other.getDateOfBirth())
+                && Objects.equals(getGender(), other.getGender());
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(getName(), getMiddleName(), getSurname(), getDateOfBirth(), getGender());
     }
 }

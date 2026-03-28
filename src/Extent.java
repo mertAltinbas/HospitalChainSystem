@@ -14,6 +14,7 @@ public interface Extent extends Serializable {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(location))) {
             arrayList = (ArrayList<T>) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e){
+            System.err.println("Error loading classes list, resetting list; " + e.getMessage());
             arrayList = new ArrayList<>();
         }
         return arrayList;
@@ -27,7 +28,8 @@ public interface Extent extends Serializable {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(location))) {
             objectOutputStream.writeObject(arrayList);
         } catch (IOException e){
-            return;
+            System.err.println("Occurred an error while saving: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

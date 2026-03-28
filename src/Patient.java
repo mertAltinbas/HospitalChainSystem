@@ -19,6 +19,7 @@ public class Patient extends Person {
     }
 
     public static int getTotalPatients(){
+        if (patientList != null) totalPatientCount = patientList.size();
         return totalPatientCount;
     }
 
@@ -29,7 +30,6 @@ public class Patient extends Person {
 
     public static void loadPatient(){
         patientList = Extent.loadClassList(FILE_NAME);
-        if (patientList != null) totalPatientCount = patientList.size();
     }
 
     public static void savePatient(){

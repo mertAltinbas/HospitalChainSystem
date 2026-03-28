@@ -21,17 +21,16 @@ public class Main {
             Address address2 = new Address("Turkey", "Istanbul", "Kadikoy", "12/4", "34000");
             Patient patient2 = new Patient("Jane", "", "Smith", LocalDate.of(1992, 11, 23), "Female", address2);
 
-            // DİKKAT: Sınıflarındaki constructor'larda save() metodunu çağırmadığın için
-            // nesne oluşturduktan sonra ilk kaydı manuel tetiklememiz gerekiyor.
-            Patient.savePatient();
-            Person.savePerson();
-
             System.out.println(" Sonuç: Yeni hastalar başarıyla oluşturuldu ve serileştirildi!");
             System.out.println(" TEST ADIMI: Şimdi programı durdurun ve HİÇBİR KODU DEĞİŞTİRMEDEN tekrar çalıştırın.");
 
         }
         // Eğer liste doluysa (ikinci veya sonraki çalışmalar)
         else {
+            // Olan datanin uzerine yeni data yazma
+            Address address3 = new Address("Country", "City", "Street", "123", "123213");
+            Patient patient3 = new Patient("Bla", "optinalMiddele", "bla", LocalDate.of(1992, 11, 23), "Female", address3);
+
             System.out.println(" Durum: Önceki kayıtlar dosyadan başarıyla yüklendi!");
             System.out.println(" Yüklenen Hasta Sayısı: " + patients.size());
             System.out.println(" Static Sayaç (totalPatientCount): " + Patient.getTotalPatients() + "\n");
