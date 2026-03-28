@@ -89,3 +89,4 @@ http-client.private.env.json
 .idea/
 out
 *.iml
+*.ser

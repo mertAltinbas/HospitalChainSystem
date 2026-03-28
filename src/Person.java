@@ -30,6 +30,7 @@ abstract public class Person implements Extent {
         this.homeAddress = homeAddress;
 
         personList.add(this);
+        savePerson();
     }
 
     public String getName() {

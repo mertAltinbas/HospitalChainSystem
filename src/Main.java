@@ -1,48 +1,51 @@
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("--- KALICILIK (PERSISTENCE) TESTİ ---\n");
 
-        try {
-            Address address1 = new Address();
-            Address address2 = new Address();
-            LocalDate dob1 = LocalDate.of(1985, 8, 15);
-            LocalDate dob2 = LocalDate.of(1992, 11, 23);
+        // Sistemdeki mevcut hastaları al (Patient sınıfındaki static block sayesinde otomatik yüklenir)
+        List<Patient> patients = Patient.getPatientList();
 
-            Patient patient1 = new Patient("John", "Robert", "Doe", dob1, "Male", address1);
-            Patient patient2 = new Patient("Jane", "", "Smith", dob2, "Female", address2);
+        // Eğer liste boşsa (ilk çalışma veya dosya silinmişse)
+        if (patients.isEmpty()) {
+            System.out.println(" Durum: Sistemde hiç hasta bulunamadı (Dosya boş veya yok).");
+            System.out.println(" Eylem: Yeni hastalar oluşturuluyor ve kaydediliyor...\n");
 
+            // 1. Yeni veriler oluştur
+            Address address1 = new Address("Poland", "Warsaw", "Polwar", "8/10", "01-234");
+            Patient patient1 = new Patient("John", "Robert", "Doe", LocalDate.of(1985, 8, 15), "Male", address1);
             patient1.addPhoneNumber("+15551234567");
-            patient1.addPhoneNumber("+15559876543");
 
-            patient2.addPhoneNumber("+442079460958");
+            Address address2 = new Address("Turkey", "Istanbul", "Kadikoy", "12/4", "34000");
+            Patient patient2 = new Patient("Jane", "", "Smith", LocalDate.of(1992, 11, 23), "Female", address2);
 
-            System.out.println("--- Patient 1 Details ---");
-            System.out.println(patient1.getDetails());
-            System.out.println("Age: " + patient1.getAge());
-            System.out.println("Middle Name: " + patient1.getMiddleName().orElse("N/A"));
-            System.out.println("Phone Numbers: " + patient1.getPhoneNumber());
+            // DİKKAT: Sınıflarındaki constructor'larda save() metodunu çağırmadığın için
+            // nesne oluşturduktan sonra ilk kaydı manuel tetiklememiz gerekiyor.
+            Patient.savePatient();
+            Person.savePerson();
 
-            System.out.println("\n--- Patient 2 Details ---");
-            System.out.println(patient2.getDetails());
-            System.out.println("Age: " + patient2.getAge());
-            System.out.println("Middle Name: " + patient2.getMiddleName().orElse("N/A"));
+            System.out.println(" Sonuç: Yeni hastalar başarıyla oluşturuldu ve serileştirildi!");
+            System.out.println(" TEST ADIMI: Şimdi programı durdurun ve HİÇBİR KODU DEĞİŞTİRMEDEN tekrar çalıştırın.");
 
-            System.out.println("\n--- Appointments ---");
-            patient1.scheduleAppointment(new Date());
-            patient2.scheduleAppointment(new Date(), "Routine cardiology checkup");
+        }
+        // Eğer liste doluysa (ikinci veya sonraki çalışmalar)
+        else {
+            System.out.println(" Durum: Önceki kayıtlar dosyadan başarıyla yüklendi!");
+            System.out.println(" Yüklenen Hasta Sayısı: " + patients.size());
+            System.out.println(" Static Sayaç (totalPatientCount): " + Patient.getTotalPatients() + "\n");
 
-            System.out.println("\nTotal Patients in System: " + Patient.getTotalPatients());
+            System.out.println("--- Yüklenen Hastaların Detayları ---");
+            for (Patient p : patients) {
+                System.out.println(p.getDetails());
+                System.out.println("   Yaş: " + p.getAge());
+                System.out.println("   Telefon: " + (p.getPhoneNumber().isEmpty() ? "Yok" : p.getPhoneNumber()));
+                System.out.println("   İkinci Ad: " + p.getMiddleName().orElse("Belirtilmemiş"));
+                System.out.println("-------------------------------------");
+            }
 
-            System.out.println("\n--- Validation Test ---");
-            System.out.println("Attempting to create a patient with an empty name...");
-            Patient invalidPatient = new Patient("", "Error", "Test", LocalDate.now(), "Unknown", address1);
-
-        } catch (IllegalArgumentException e) {
-            System.err.println("Registration Failed! Error details: " + e.getMessage());
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred: " + e.getMessage());
+            System.out.println("\n Test Başarılı! Nesneler program kapatılıp açılmasına rağmen korunuyor.");
         }
     }
 }

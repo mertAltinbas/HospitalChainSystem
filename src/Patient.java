@@ -15,6 +15,7 @@ public class Patient extends Person {
         totalPatientCount++;
 
         patientList.add(this);
+        savePatient();
     }
 
     public static int getTotalPatients(){
@@ -28,6 +29,7 @@ public class Patient extends Person {
 
     public static void loadPatient(){
         patientList = Extent.loadClassList(FILE_NAME);
+        if (patientList != null) totalPatientCount = patientList.size();
     }
 
     public static void savePatient(){

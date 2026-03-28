@@ -14,7 +14,6 @@ public class Address implements Serializable {
     private String apartmentNumber;
     private String postalCode;
 
-    /*
     public Address(String country, String city, String street, String apartmentNumber, String postalCode) {
         Validation.validateString(country, "country");
         Validation.validateString(city, "city");
@@ -27,8 +26,10 @@ public class Address implements Serializable {
         this.street = street;
         this.apartmentNumber = apartmentNumber;
         this.postalCode = postalCode;
+
+        addressList.add(this);
+        saveAddress();
     }
-     */
 
     public String getCountry() {
         return country;
