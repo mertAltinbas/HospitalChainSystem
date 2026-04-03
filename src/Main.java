@@ -4,6 +4,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Patient> patients = Patient.getPatientList();
+        System.out.println("New commit");
 
         if (patients.isEmpty()) {
             System.out.println("No patients found in the system.\nCreating and saving new patients");
