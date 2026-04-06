@@ -8,19 +8,11 @@ public class Patient extends Person {
 
     static { loadPatient(); }
 
-    public static int totalPatientCount = 0;
-
-    public Patient(String name, String middleName, String surname, LocalDate dateOfBirth, String gender, Address homeAddress) {
-        super(name, middleName, surname, dateOfBirth, gender, homeAddress);
-        totalPatientCount++;
+    public Patient(String name, String middleName, String surname, LocalDate dateOfBirth, String gender, Address homeAddress, String pesel) {
+        super(name, middleName, surname, dateOfBirth, gender, homeAddress, pesel);
 
         patientList.add(this);
         savePatient();
-    }
-
-    public static int getTotalPatients(){
-        if (patientList != null) totalPatientCount = patientList.size();
-        return totalPatientCount;
     }
 
     @Override

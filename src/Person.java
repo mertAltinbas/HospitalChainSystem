@@ -15,12 +15,16 @@ abstract public class Person implements Extent {
     private String gender;
     private Set<String> phoneNumber =  new HashSet<String>();
     private Address homeAddress;
+    private String pesel;
 
-    public Person(String name, String middleName, String surname, LocalDate dateOfBirth, String gender, Address homeAddress) {
+    public static int PESEL_LENGTH = 11;
+
+    public Person(String name, String middleName, String surname, LocalDate dateOfBirth, String gender, Address homeAddress, String pesel) {
         Validation.validateString(name, "Person name cannot be empty or null.");
         Validation.validateString(surname, "Person surname cannot be empty or null.");
         Validation.validateString(gender, "Person gender cannot be empty or null.");
         Validation.validateBirthDate(dateOfBirth, "Person dateOfBirth cannot be empty or null.");
+        Validation.validateString(pesel, "Person PESEL cannot be empty or null.");
 
         this.name = name;
         this.setMiddleName(middleName);
@@ -28,6 +32,7 @@ abstract public class Person implements Extent {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.homeAddress = homeAddress;
+        this.pesel = pesel;
 
         if (personList.contains(this)) return;
         personList.add(this);
@@ -102,6 +107,23 @@ abstract public class Person implements Extent {
         this.homeAddress = Objects.requireNonNull(homeAddress, "homeAddress cannot be null");
     }
 
+    public int getAge() {
+        return Period.between(dateOfBirth, LocalDate.now()).getYears();
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String newPesel) {
+        if (isValidPesel(newPesel)){
+            this.pesel = newPesel;
+        } else {
+            throw new IllegalArgumentException("Invalid pesel");
+        }
+
+    }
+
     public void scheduleAppointment(LocalDate appointmentDate) {
         scheduleAppointment(appointmentDate, "-");
     }
@@ -110,14 +132,16 @@ abstract public class Person implements Extent {
         System.out.println("Appointment date: " + appointmentDate + " | Note: " + note);
     }
 
-    public int getAge() {
-        return Period.between(dateOfBirth, LocalDate.now()).getYears();
+    public static boolean isValidPesel(String pesel) {
+        if (pesel == null || pesel.trim().isEmpty()) return false;
+        return pesel.length() == PESEL_LENGTH && pesel.matches("\\d+");
     }
 
     public String getDetails(){
         return "Name: " + name + " - Surname: " + surname + " - Gender: " + gender;
     }
 
+    // extent methods
     public static void loadPerson(){
         personList = Extent.loadClassList(FILE_NAME);
     }

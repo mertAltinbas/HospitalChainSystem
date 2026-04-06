@@ -10,11 +10,11 @@ public class Main {
             System.out.println("No patients found in the system.\nCreating and saving new patients");
 
             Address address1 = new Address("Poland", "Warsaw", "Polwar", "8/10", "01-234");
-            Patient patient1 = new Patient("John", "Robert", "Doe", LocalDate.of(1985, 8, 15), "Male", address1);
+            Patient patient1 = new Patient("John", "Robert", "Doe", LocalDate.of(1985, 8, 15), "Male", address1, "12332112311");
             patient1.addPhoneNumber("+123456789");
 
             Address address2 = new Address("Turkey", "Istanbul", "Kadikoy", "12/4", "34000");
-            Patient patient2 = new Patient("Jane", "", "Smith", LocalDate.of(1992, 11, 23), "Female", address2);
+            Patient patient2 = new Patient("Jane", "", "Smith", LocalDate.of(1992, 11, 23), "Female", address2, "12332112312");
 
             System.out.println("New patients created");
 
@@ -22,11 +22,10 @@ public class Main {
         else {
             // Attempt to add new data to existing records
 //            Address address3 = new Address("Country", "City", "Street", "123", "123213");
-//            Patient patient3 = new Patient("Bla", "OptionalMiddle", "Bla", LocalDate.of(1992, 11, 23), "Female", address3);
+//            Patient patient3 = new Patient("Bla", "OptionalMiddle", "Bla", LocalDate.of(1992, 11, 23), "Female", address3, "12332112313");
 
             System.out.println("Records successfully loaded from file");
             System.out.println("Loaded Patient Count: " + patients.size());
-            System.out.println("Static Counter (totalPatientCount): " + Patient.getTotalPatients() + "\n");
 
             System.out.println("--- Details of Loaded Patients ---");
             for (Patient p : patients) {
