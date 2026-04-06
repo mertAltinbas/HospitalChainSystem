@@ -3,7 +3,7 @@ import java.time.Period;
 import java.util.*;
 
 abstract public class Person implements Extent {
-    private static final String FILE_NAME = "Person.ser";
+    private static final String FILE_NAME = "DataFile.ser";
     private static ArrayList<Person> personList = new ArrayList<>();
 
     static { loadPerson(); }
@@ -94,16 +94,24 @@ abstract public class Person implements Extent {
         return Collections.unmodifiableSet(this.phoneNumber);
     }
 
-    public void scheduleAppointment(Date appointmentDate) {
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = Objects.requireNonNull(homeAddress, "homeAddress cannot be null");
+    }
+
+    public void scheduleAppointment(LocalDate appointmentDate) {
         scheduleAppointment(appointmentDate, "-");
     }
 
-    public void scheduleAppointment(Date appointmentDate, String note) {
+    public void scheduleAppointment(LocalDate appointmentDate, String note) {
         System.out.println("Appointment date: " + appointmentDate + " | Note: " + note);
     }
 
     public int getAge() {
-        return (dateOfBirth == null) ? 0 : Period.between(dateOfBirth, LocalDate.now()).getYears();
+        return Period.between(dateOfBirth, LocalDate.now()).getYears();
     }
 
     public String getDetails(){

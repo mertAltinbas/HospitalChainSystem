@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Patient extends Person {
-    private static final String FILE_NAME = "Patient.ser";
+    private static final String FILE_NAME = "DataFile.ser";
     private static ArrayList<Patient> patientList = new ArrayList<>();
 
     static { loadPatient(); }

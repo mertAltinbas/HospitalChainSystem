@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Address implements Serializable {
-    private static final String FILE_NAME = "Address.ser";
+    private static final String FILE_NAME = "DataFile.ser";
     private static ArrayList<Address> addressList = new ArrayList<>();
 
     static {loadAddress();}
