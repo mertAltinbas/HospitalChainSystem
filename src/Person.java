@@ -32,6 +32,9 @@ abstract public class Person implements Extent {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.homeAddress = homeAddress;
+        if (!isValidPesel(pesel)) {
+            throw new IllegalArgumentException("Invalid PESEL length or format.");
+        }
         this.pesel = pesel;
 
         if (personList.contains(this)) return;
@@ -118,6 +121,7 @@ abstract public class Person implements Extent {
     public void setPesel(String newPesel) {
         if (isValidPesel(newPesel)){
             this.pesel = newPesel;
+            savePerson();
         } else {
             throw new IllegalArgumentException("Invalid pesel");
         }
@@ -159,15 +163,11 @@ abstract public class Person implements Extent {
         if (this == o) return true;
         if (!(o instanceof Person)) return false;
         Person other = (Person) o;
-        return Objects.equals(getName(), other.getName())
-                && Objects.equals(getMiddleName(), other.getMiddleName())
-                && Objects.equals(getSurname(), other.getSurname())
-                && Objects.equals(getDateOfBirth(), other.getDateOfBirth())
-                && Objects.equals(getGender(), other.getGender());
+        return Objects.equals(getPesel(), other.getPesel());
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(getName(), getMiddleName(), getSurname(), getDateOfBirth(), getGender());
+        return Objects.hash(getPesel());
     }
 }
