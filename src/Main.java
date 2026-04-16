@@ -20,8 +20,8 @@ public class Main {
         }
         else {
             // Attempt to add new data to existing records
-            Address address3 = new Address("Country", "City", "Street", "123", "123213");
-            Patient patient3 = new Patient("Bla", "OptionalMiddle", "Bla", LocalDate.of(1992, 11, 23), "Female", address3, "12332112313");
+            //Address address3 = new Address("Country", "City", "Street", "123", "123213");
+            //Patient patient3 = new Patient("Bla", "OptionalMiddle", "Bla", LocalDate.of(1992, 11, 23), "Female", address3, "12332112313");
 
             System.out.println("Records successfully loaded from file");
             System.out.println("Loaded Patient Count: " + patients.size());

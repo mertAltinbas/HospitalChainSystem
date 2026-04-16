@@ -38,4 +38,10 @@ public class Validation {
     public static void validateBirthDate(LocalDate birthDate,  String fieldName) {
         Objects.requireNonNull(birthDate, "Birth date cannot be null");
     }
+
+    public static void validatePesel(String pesel, String fieldName) {
+        if(!Person.isValidPesel(pesel)){
+            throw new IllegalArgumentException(fieldName + " PESEL is not a valid pesel.");
+        }
+    }
 }

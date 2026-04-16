@@ -24,7 +24,7 @@ abstract public class Person implements Extent {
         Validation.validateString(surname, "Person surname cannot be empty or null.");
         Validation.validateString(gender, "Person gender cannot be empty or null.");
         Validation.validateBirthDate(dateOfBirth, "Person dateOfBirth cannot be empty or null.");
-        Validation.validateString(pesel, "Person PESEL cannot be empty or null.");
+        Validation.validatePesel(pesel, "Person PESEL not empty or null.");
 
         this.name = name;
         this.setMiddleName(middleName);
@@ -32,9 +32,6 @@ abstract public class Person implements Extent {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.homeAddress = homeAddress;
-        if (!isValidPesel(pesel)) {
-            throw new IllegalArgumentException("Invalid PESEL length or format.");
-        }
         this.pesel = pesel;
 
         if (personList.contains(this)) return;
