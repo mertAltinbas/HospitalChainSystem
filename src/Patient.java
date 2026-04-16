@@ -12,7 +12,6 @@ public class Patient extends Person {
         super(name, middleName, surname, dateOfBirth, gender, homeAddress, pesel);
 
         patientList.add(this);
-        savePatient();
     }
 
     @Override

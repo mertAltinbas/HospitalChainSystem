@@ -15,6 +15,8 @@ public class Main {
             Address address2 = new Address("Turkey", "Istanbul", "Kadikoy", "12/4", "34000");
             Patient patient2 = new Patient("Jane", "", "Smith", LocalDate.of(1992, 11, 23), "Female", address2, "12332112312");
 
+            Address.saveAddress();
+            Patient.savePatient();
             System.out.println("New patients created");
 
         }
