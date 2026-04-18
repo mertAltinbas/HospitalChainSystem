@@ -10,9 +10,11 @@ public class Doctor extends Person{
     private String licenseNumber;
     private BigDecimal salary;
 
+    private Department department;
+
     static{ loadDoctor(); }
 
-    public Doctor(String licenseNumber, BigDecimal salary, String name, String middleName, String surname, LocalDate dateOfBirth, String gender, Address homeAddress, String pesel){
+    public Doctor(String licenseNumber, BigDecimal salary, String name, String middleName, String surname, LocalDate dateOfBirth, String gender, Address homeAddress, String pesel) {
         super(name, middleName, surname, dateOfBirth, gender, homeAddress, pesel);
         Validation.validateString(licenseNumber, "licenseNumber cannot be null or empty");
         Validation.validateBigDecimal(salary, "salary cannot be null or negative");
@@ -20,8 +22,27 @@ public class Doctor extends Person{
         this.licenseNumber = licenseNumber;
         this.salary = salary;
 
-        if (doctorList.contains(this)) return;
-        doctorList.add(this);
+        if (!doctorList.contains(this)) doctorList.add(this);
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department newDepartment) {
+        if (this.department == newDepartment) return;
+
+        if (this.department != null) {
+            Department oldDepartment = this.department;
+            this.department = null;
+            oldDepartment.removeDoctor(this);
+        }
+
+        this.department = newDepartment;
+
+        if (this.department != null) {
+            this.department.addDoctor(this);
+        }
     }
 
     public String getLicenseNumber() {
