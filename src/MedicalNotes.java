@@ -12,6 +12,9 @@ public class MedicalNotes implements Extent{
     public MedicalNotes(String description){
         Validation.validateString(description, "Medical Notes Description");
         this.description = description;
+
+        if (medicalNotesList.contains(this)) return;
+        medicalNotesList.add(this);
     }
 
     public String getDescription() {

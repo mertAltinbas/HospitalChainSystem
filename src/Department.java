@@ -12,6 +12,9 @@ public class Department implements Extent{
     public Department(String departmentName){
         Validation.validateString(departmentName, "departmentName cannot be null or empty");
         this.departmentName = departmentName;
+
+        if (departmentList.contains(this)) return;
+        departmentList.add(this);
     }
 
     public String getDepartmentName() {

@@ -12,6 +12,9 @@ public class Hospital implements Extent{
 
     public Hospital(Address hospitalAddress){
         this.hospitalAddress = hospitalAddress;
+
+        if (hospitalList.contains(this)) return;
+        hospitalList.add(this);
     }
 
     public Address getAddress(){

@@ -19,6 +19,9 @@ public class Doctor extends Person{
 
         this.licenseNumber = licenseNumber;
         this.salary = salary;
+
+        if (doctorList.contains(this)) return;
+        doctorList.add(this);
     }
 
     public String getLicenseNumber() {

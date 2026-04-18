@@ -14,6 +14,9 @@ public class Appointment implements Extent{
     public Appointment(LocalDate appointmentDate){
         Objects.requireNonNull(appointmentDate, "Appointment date cannot be null.");
         this.appointmentDate = appointmentDate;
+
+        if (appointmentList.contains(this)) return;
+        appointmentList.add(this);
     }
 
     public LocalDate getAppointmentDate() {
