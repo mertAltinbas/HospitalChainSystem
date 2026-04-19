@@ -7,6 +7,7 @@ public class Department implements Extent{
     private String departmentName;
 
     private HashSet<Doctor> doctorList = new HashSet<>();
+    private HashSet<Hospital> hospitalList = new HashSet<>();
 
     static { loadDepartment(); }
 
@@ -15,6 +16,37 @@ public class Department implements Extent{
         this.departmentName = departmentName;
 
         if (!departmentList.contains(this)) departmentList.add(this);
+    }
+
+    public Set<Hospital> getHospitalList() {
+        return Collections.unmodifiableSet(hospitalList);
+    }
+
+    public void addHospital(Hospital hospital) {
+        Objects.requireNonNull(hospital, "hospital cannot be null");
+        if  (hospitalList.contains(hospital)) return;
+        hospitalList.add(hospital);
+        hospital.addDepartment(this);
+    }
+
+    public void removeHospital(Hospital hospital) {
+        Objects.requireNonNull(hospital, "hospital cannot be null");
+        if(!hospitalList.contains(hospital)) return;
+
+        hospitalList.remove(hospital);
+        hospital.removeDepartment(this);
+    }
+
+    public void delete() {
+        HashSet<Hospital> hospitalsToUnlink = new HashSet<>(this.hospitalList);
+        HashSet<Doctor> doctorsToUnlink = new HashSet<>(this.doctorList);
+        for (Hospital hospital : hospitalsToUnlink) {
+            hospital.removeDepartment(this);
+        }
+        for (Doctor doctor : doctorsToUnlink) {
+            doctor.removeDepartment(this);
+        }
+        departmentList.remove(this);
     }
 
     public Set<Doctor> getDoctor(){

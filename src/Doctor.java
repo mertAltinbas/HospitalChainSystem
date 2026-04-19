@@ -45,15 +45,6 @@ public class Doctor extends Person{
         appointment.delete();
     }
 
-    public void delete(){
-        List<Appointment> appointmentsToDelete = new ArrayList<>(this.appointmentList);
-        for (Appointment appointment : appointmentsToDelete) {
-            appointment.delete();
-        }
-
-        doctorList.remove(this);
-    }
-
     public Department getDepartment() {
         return department;
     }
@@ -72,6 +63,15 @@ public class Doctor extends Person{
         if (this.department != null) {
             this.department.addDoctor(this);
         }
+    }
+
+    public void removeDepartment(Department department) {
+        Objects.requireNonNull(department, "Department cannot be null");
+        if (this.department != department) return;
+
+        this.department = null;
+
+        department.removeDoctor(this);
     }
 
     public String getLicenseNumber() {
@@ -103,5 +103,16 @@ public class Doctor extends Person{
 
     public static List<Doctor> getDoctorList(){
         return Extent.getImmutableClassList(doctorList);
+    }
+
+
+    public void delete(){
+        List<Appointment> appointmentsToDelete = new ArrayList<>(this.appointmentList);
+        for (Appointment appointment : appointmentsToDelete) {
+            appointment.delete();
+        }
+        if (this.department != null) this.setDepartment(null);
+
+        doctorList.remove(this);
     }
 }
