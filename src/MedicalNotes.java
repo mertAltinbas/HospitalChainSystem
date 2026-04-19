@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MedicalNotes implements Extent{
     private static final String FILE_NAME = "DataFile.ser";
@@ -7,14 +8,46 @@ public class MedicalNotes implements Extent{
 
     private String description;
 
+    private Patient patient;
+
     static { loadMedicalNotes(); }
 
-    public MedicalNotes(String description){
+    public MedicalNotes(String description, Patient patient) {
         Validation.validateString(description, "Medical Notes Description");
+        Objects.requireNonNull(patient, "Patient cannot be null");
         this.description = description;
+
+        this.patient = patient;
+        this.patient.addMedicalNotes(this);
 
         if (medicalNotesList.contains(this)) return;
         medicalNotesList.add(this);
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        if (patient == null) return;
+        if(this.patient == patient) return;
+
+        if (this.patient != null) {
+            Patient oldPatient = this.patient;
+            this.patient = null;
+            oldPatient.removeMedicalNotes(this);
+        }
+
+        this.patient.addMedicalNotes(this);
+    }
+
+    public void delete(){
+        if (this.patient != null) {
+            Patient oldPatient = this.patient;
+            this.patient = null;
+            oldPatient.removeMedicalNotes(this);
+        }
+        this.medicalNotesList.remove(this);
     }
 
     public String getDescription() {

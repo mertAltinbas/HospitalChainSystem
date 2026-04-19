@@ -23,7 +23,6 @@ public class Department implements Extent{
 
     public void addDoctor(Doctor doctor) {
         if (doctor == null) return;
-
         if (this.doctorList.contains(doctor)) return;
 
         this.doctorList.add(doctor);
@@ -33,7 +32,6 @@ public class Department implements Extent{
 
     public void removeDoctor(Doctor doctor) {
         if (doctor == null) return;
-
         if (!this.doctorList.contains(doctor)) return;
 
         this.doctorList.remove(doctor);
