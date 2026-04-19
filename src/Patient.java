@@ -1,14 +1,12 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Patient extends Person {
     private static final String FILE_NAME = "DataFile.ser";
     private static ArrayList<Patient> patientList = new ArrayList<>();
 
     private ArrayList<MedicalNotes> medicalNotesList = new ArrayList<>();
+    private ArrayList<Appointment> appointmentList = new ArrayList<>();
 
     static { loadPatient(); }
 
@@ -24,7 +22,7 @@ public class Patient extends Person {
 
     public void addMedicalNotes(MedicalNotes newMedicalNotes) {
         if (this.medicalNotesList.contains(newMedicalNotes)) return;
-        if (newMedicalNotes == null) return;
+        Objects.requireNonNull(newMedicalNotes, "MedicalNotes cannot be null");
 
         this.medicalNotesList.add(newMedicalNotes);
 
@@ -33,17 +31,42 @@ public class Patient extends Person {
 
     public void removeMedicalNotes(MedicalNotes medicalNotes) {
         if (!this.medicalNotesList.contains(medicalNotes)) return;
-        if (medicalNotes == null) return;
+        Objects.requireNonNull(medicalNotes, "MedicalNotes cannot be null");
 
         this.medicalNotesList.remove(medicalNotes);
 
         medicalNotes.delete();
     }
 
+    public List<Appointment> getAppointmentList() {
+        return Collections.unmodifiableList(appointmentList);
+    }
+
+    public void addAppointment(Appointment newAppointment) {
+        if (this.appointmentList.contains(newAppointment)) return;
+        Objects.requireNonNull(newAppointment, "Appointment cannot be null");
+
+        this.appointmentList.add(newAppointment);
+        newAppointment.setPatient(this);
+    }
+
+    public void removeAppointment(Appointment appointment) {
+        if (!this.appointmentList.contains(appointment)) return;
+        Objects.requireNonNull(appointment, "Appointment cannot be null");
+
+        this.appointmentList.remove(appointment);
+
+        appointment.delete();
+    }
+
     public void delete(){
         List<MedicalNotes> notesToDelete = new ArrayList<>(this.medicalNotesList);
+        List<Appointment> appointmentsToDelete = new ArrayList<>(this.appointmentList);
         for (MedicalNotes notes : notesToDelete) {
             notes.delete();
+        }
+        for (Appointment appointment : appointmentsToDelete) {
+            appointment.delete();
         }
         patientList.remove(this);
     }

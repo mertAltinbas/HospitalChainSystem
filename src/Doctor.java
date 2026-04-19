@@ -1,7 +1,6 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Doctor extends Person{
     private static final String FILE_NAME = "DataFile.ser";
@@ -11,6 +10,7 @@ public class Doctor extends Person{
     private BigDecimal salary;
 
     private Department department;
+    private ArrayList<Appointment> appointmentList = new ArrayList<>();
 
     static{ loadDoctor(); }
 
@@ -22,7 +22,36 @@ public class Doctor extends Person{
         this.licenseNumber = licenseNumber;
         this.salary = salary;
 
-        if (!doctorList.contains(this)) doctorList.add(this);
+        doctorList.add(this);
+    }
+
+    public List<Appointment> getAppointments(){
+        return Collections.unmodifiableList(appointmentList);
+    }
+
+    public void addAppointment(Appointment newAppointment) {
+        if (this.appointmentList.contains(newAppointment)) return;
+        Objects.requireNonNull(newAppointment, "Appointment cannot be null");
+
+        this.appointmentList.add(newAppointment);
+        newAppointment.setDoctor(this);
+    }
+
+    public void removeAppointment(Appointment appointment){
+        Objects.requireNonNull(appointment, "Appointment cannot be null");
+        if (!this.appointmentList.contains(appointment)) return;
+
+        this.appointmentList.remove(appointment);
+        appointment.delete();
+    }
+
+    public void delete(){
+        List<Appointment> appointmentsToDelete = new ArrayList<>(this.appointmentList);
+        for (Appointment appointment : appointmentsToDelete) {
+            appointment.delete();
+        }
+
+        doctorList.remove(this);
     }
 
     public Department getDepartment() {

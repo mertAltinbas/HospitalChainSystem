@@ -29,7 +29,7 @@ public class MedicalNotes implements Extent{
     }
 
     public void setPatient(Patient patient) {
-        if (patient == null) return;
+        Objects.requireNonNull(patient, "Patient cannot be null");
         if(this.patient == patient) return;
 
         if (this.patient != null) {
@@ -37,7 +37,7 @@ public class MedicalNotes implements Extent{
             this.patient = null;
             oldPatient.removeMedicalNotes(this);
         }
-
+        this.patient = patient;
         this.patient.addMedicalNotes(this);
     }
 
