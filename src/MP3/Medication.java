@@ -1,4 +1,5 @@
 package MP3;
 
-public class Medication {
+public class Medication{
+
 }
