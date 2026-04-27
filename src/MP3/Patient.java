@@ -15,6 +15,7 @@ public class Patient extends Person {
         this.insuranceRate = insuranceRate;
     }
 
+    @Override
     public float calculateFinalBill(float rawFee) {
         return  rawFee * (1 - insuranceRate);
     }

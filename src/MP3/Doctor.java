@@ -1,4 +1,22 @@
 package MP3;
 
-public class Doctor {
+public class Doctor extends Person {
+    private float employeeDiscount;
+
+    public Doctor(float employeeDiscount) {
+        this.employeeDiscount = employeeDiscount;
+    }
+
+    public float getEmployeeDiscount() {
+        return employeeDiscount;
+    }
+
+    public void setEmployeeDiscount(float employeeDiscount) {
+        this.employeeDiscount = employeeDiscount;
+    }
+
+    @Override
+    public float calculateFinalBill(float rawFee) {
+        return rawFee - (rawFee * employeeDiscount);
+    }
 }
