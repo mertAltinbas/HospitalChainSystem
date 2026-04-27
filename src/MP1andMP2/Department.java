@@ -1,3 +1,5 @@
+package MP1andMP2;
+
 import java.util.*;
 
 public class Department implements Extent{

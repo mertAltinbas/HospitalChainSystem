@@ -1,3 +1,5 @@
+package MP1andMP2;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +16,7 @@ public class MedicalNotes implements Extent{
 
     public MedicalNotes(String description, Patient patient) {
         Validation.validateString(description, "Medical Notes Description");
-        Objects.requireNonNull(patient, "Patient cannot be null");
+        Objects.requireNonNull(patient, "MP1andMP2.Patient cannot be null");
         this.description = description;
 
         this.patient = patient;
@@ -29,7 +31,7 @@ public class MedicalNotes implements Extent{
     }
 
     public void setPatient(Patient patient) {
-        Objects.requireNonNull(patient, "Patient cannot be null");
+        Objects.requireNonNull(patient, "MP1andMP2.Patient cannot be null");
         if(this.patient == patient) return;
 
         if (this.patient != null) {

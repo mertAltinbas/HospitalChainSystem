@@ -1,3 +1,5 @@
+package MP1andMP2;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -22,7 +24,7 @@ public class Patient extends Person {
 
     public void addMedicalNotes(MedicalNotes newMedicalNotes) {
         if (this.medicalNotesList.contains(newMedicalNotes)) return;
-        Objects.requireNonNull(newMedicalNotes, "MedicalNotes cannot be null");
+        Objects.requireNonNull(newMedicalNotes, "MP1andMP2.MedicalNotes cannot be null");
 
         this.medicalNotesList.add(newMedicalNotes);
 
@@ -31,7 +33,7 @@ public class Patient extends Person {
 
     public void removeMedicalNotes(MedicalNotes medicalNotes) {
         if (!this.medicalNotesList.contains(medicalNotes)) return;
-        Objects.requireNonNull(medicalNotes, "MedicalNotes cannot be null");
+        Objects.requireNonNull(medicalNotes, "MP1andMP2.MedicalNotes cannot be null");
 
         this.medicalNotesList.remove(medicalNotes);
 
@@ -44,7 +46,7 @@ public class Patient extends Person {
 
     public void addAppointment(Appointment newAppointment) {
         if (this.appointmentList.contains(newAppointment)) return;
-        Objects.requireNonNull(newAppointment, "Appointment cannot be null");
+        Objects.requireNonNull(newAppointment, "MP1andMP2.Appointment cannot be null");
 
         this.appointmentList.add(newAppointment);
         newAppointment.setPatient(this);
@@ -52,7 +54,7 @@ public class Patient extends Person {
 
     public void removeAppointment(Appointment appointment) {
         if (!this.appointmentList.contains(appointment)) return;
-        Objects.requireNonNull(appointment, "Appointment cannot be null");
+        Objects.requireNonNull(appointment, "MP1andMP2.Appointment cannot be null");
 
         this.appointmentList.remove(appointment);
 
@@ -73,7 +75,7 @@ public class Patient extends Person {
 
     @Override
     public String getDetails(){
-        return super.getDetails() + " - Patient";
+        return super.getDetails() + " - MP1andMP2.Patient";
     }
 
     public static void loadPatient(){

@@ -1,3 +1,5 @@
+package MP1andMP2;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -31,14 +33,14 @@ public class Doctor extends Person{
 
     public void addAppointment(Appointment newAppointment) {
         if (this.appointmentList.contains(newAppointment)) return;
-        Objects.requireNonNull(newAppointment, "Appointment cannot be null");
+        Objects.requireNonNull(newAppointment, "MP1andMP2.Appointment cannot be null");
 
         this.appointmentList.add(newAppointment);
         newAppointment.setDoctor(this);
     }
 
     public void removeAppointment(Appointment appointment){
-        Objects.requireNonNull(appointment, "Appointment cannot be null");
+        Objects.requireNonNull(appointment, "MP1andMP2.Appointment cannot be null");
         if (!this.appointmentList.contains(appointment)) return;
 
         this.appointmentList.remove(appointment);
@@ -66,7 +68,7 @@ public class Doctor extends Person{
     }
 
     public void removeDepartment(Department department) {
-        Objects.requireNonNull(department, "Department cannot be null");
+        Objects.requireNonNull(department, "MP1andMP2.Department cannot be null");
         if (this.department != department) return;
 
         this.department = null;

@@ -1,3 +1,5 @@
+package MP1andMP2;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -20,11 +22,11 @@ abstract public class Person implements Extent {
     public static int PESEL_LENGTH = 11;
 
     public Person(String name, String middleName, String surname, LocalDate dateOfBirth, String gender, Address homeAddress, String pesel) {
-        Validation.validateString(name, "Person name cannot be empty or null.");
-        Validation.validateString(surname, "Person surname cannot be empty or null.");
-        Validation.validateString(gender, "Person gender cannot be empty or null.");
-        Validation.validateBirthDate(dateOfBirth, "Person dateOfBirth cannot be empty or null.");
-        Validation.validatePesel(pesel, "Person PESEL not empty or null.");
+        Validation.validateString(name, "MP1andMP2.Person name cannot be empty or null.");
+        Validation.validateString(surname, "MP1andMP2.Person surname cannot be empty or null.");
+        Validation.validateString(gender, "MP1andMP2.Person gender cannot be empty or null.");
+        Validation.validateBirthDate(dateOfBirth, "MP1andMP2.Person dateOfBirth cannot be empty or null.");
+        Validation.validatePesel(pesel, "MP1andMP2.Person PESEL not empty or null.");
 
         this.name = name;
         this.setMiddleName(middleName);
@@ -43,7 +45,7 @@ abstract public class Person implements Extent {
     }
 
     public void setName(String name) {
-        Validation.validateString(name, "Person name cannot be empty or null.");
+        Validation.validateString(name, "MP1andMP2.Person name cannot be empty or null.");
         this.name = name;
     }
 
@@ -60,7 +62,7 @@ abstract public class Person implements Extent {
     }
 
     public void setSurname(String surname) {
-        Validation.validateString(surname, "Person surname cannot be empty or null.");
+        Validation.validateString(surname, "MP1andMP2.Person surname cannot be empty or null.");
         this.surname = surname;
     }
 
@@ -69,7 +71,7 @@ abstract public class Person implements Extent {
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
-        Validation.validateBirthDate(dateOfBirth, "Person dateOfBirth cannot be empty or null.");
+        Validation.validateBirthDate(dateOfBirth, "MP1andMP2.Person dateOfBirth cannot be empty or null.");
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -78,7 +80,7 @@ abstract public class Person implements Extent {
     }
 
     public void setGender(String gender) {
-        Validation.validateString(gender, "Person gender cannot be empty or null.");
+        Validation.validateString(gender, "MP1andMP2.Person gender cannot be empty or null.");
         this.gender = gender;
     }
 
@@ -122,7 +124,7 @@ abstract public class Person implements Extent {
     }
 
     public void scheduleAppointment(LocalDate appointmentDate, String note) {
-        System.out.println("Appointment date: " + appointmentDate + " | Note: " + note);
+        System.out.println("MP1andMP2.Appointment date: " + appointmentDate + " | Note: " + note);
     }
 
     public static boolean isValidPesel(String pesel) {

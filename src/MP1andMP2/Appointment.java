@@ -1,3 +1,5 @@
+package MP1andMP2;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +17,9 @@ public class Appointment implements Extent{
     static { loadAppointment(); }
 
     public Appointment(LocalDate appointmentDate, Patient patient, Doctor doctor) {
-        Objects.requireNonNull(appointmentDate, "Appointment date cannot be null.");
-        Objects.requireNonNull(patient, "Patient cannot be null.");
-        Objects.requireNonNull(doctor, "Doctor cannot be null.");
+        Objects.requireNonNull(appointmentDate, "MP1andMP2.Appointment date cannot be null.");
+        Objects.requireNonNull(patient, "MP1andMP2.Patient cannot be null.");
+        Objects.requireNonNull(doctor, "MP1andMP2.Doctor cannot be null.");
 
         this.appointmentDate = appointmentDate;
         this.patient = patient;
@@ -34,7 +36,7 @@ public class Appointment implements Extent{
     }
 
     public void setPatient(Patient patient){
-        Objects.requireNonNull(patient, "Patient cannot be null.");
+        Objects.requireNonNull(patient, "MP1andMP2.Patient cannot be null.");
         if (appointmentList.contains(this)) return;
 
         if (this.patient != null){
@@ -51,7 +53,7 @@ public class Appointment implements Extent{
     }
 
     public void setDoctor(Doctor doctor){
-        Objects.requireNonNull(doctor, "Doctor cannot be null.");
+        Objects.requireNonNull(doctor, "MP1andMP2.Doctor cannot be null.");
         if(this.doctor == doctor) return;
 
         if (this.doctor != null){
@@ -82,7 +84,7 @@ public class Appointment implements Extent{
     }
 
     public void setAppointmentDate(LocalDate appointmentDate) {
-        Objects.requireNonNull(appointmentDate, "Appointment date cannot be null.");
+        Objects.requireNonNull(appointmentDate, "MP1andMP2.Appointment date cannot be null.");
         this.appointmentDate = appointmentDate;
     }
 

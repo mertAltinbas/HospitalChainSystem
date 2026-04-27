@@ -1,3 +1,5 @@
+package MP1andMP2;
+
 import java.util.*;
 
 public class Hospital implements Extent{
@@ -27,8 +29,8 @@ public class Hospital implements Extent{
 
     public void addDepartment(Department department){
         String key = department.getDepartmentName();
-        Objects.requireNonNull(department, "Department cannot be null");
-        Objects.requireNonNull(key, "Department name (key) cannot be null");
+        Objects.requireNonNull(department, "MP1andMP2.Department cannot be null");
+        Objects.requireNonNull(key, "MP1andMP2.Department name (key) cannot be null");
 
         if (departmentMap.containsKey(key) && this.departmentMap.get(key) == department) return;
 
@@ -38,8 +40,8 @@ public class Hospital implements Extent{
 
     public void removeDepartment(Department department){
         String key = department.getDepartmentName();
-        Objects.requireNonNull(department, "Department cannot be null");
-        Objects.requireNonNull(key, "Department name (key) cannot be null");
+        Objects.requireNonNull(department, "MP1andMP2.Department cannot be null");
+        Objects.requireNonNull(key, "MP1andMP2.Department name (key) cannot be null");
         if (!departmentMap.containsKey(key) || this.departmentMap.get(key) != department) return;
 
         departmentMap.remove(key);
