@@ -3,7 +3,8 @@ package MP3;
 public class Doctor extends Person {
     private float employeeDiscount;
 
-    public Doctor(float employeeDiscount) {
+    public Doctor(float employeeDiscount, String name) {
+        super(name);
         this.employeeDiscount = employeeDiscount;
     }
 
