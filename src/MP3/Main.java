@@ -3,6 +3,9 @@ package MP3;
 import MP3.Abstract.Doctor;
 import MP3.Abstract.Patient;
 import MP3.Abstract.Person;
+import MP3.Dynamic.AssociateProfessor;
+import MP3.Dynamic.Professor;
+import MP3.Dynamic.Rank;
 import MP3.Overlapping.Medication;
 
 public class Main {
@@ -20,5 +23,14 @@ public class Main {
 
         if (overlappingMedication.isClinical()) System.out.println("Dosage: " + overlappingMedication.getPrescribedDosageFrequency());
         if (overlappingMedication.isPrescribed()) System.out.println("Stock: " + overlappingMedication.getClinicalStockQuantity());
+
+        // Testing dynamic
+        Rank associateProfessor = new AssociateProfessor(1500.0f, "AssociateProfessor", "dynamic inheritance");
+        System.out.println(associateProfessor.toString());
+        System.out.println("Research Area: " + ((AssociateProfessor) associateProfessor).getResearchArea());
+
+        associateProfessor = new Professor(associateProfessor, 45);
+        System.out.println(associateProfessor.toString());
+        System.out.println("Publication Count: " + ((Professor) associateProfessor).getPublicationCount());
     }
 }
