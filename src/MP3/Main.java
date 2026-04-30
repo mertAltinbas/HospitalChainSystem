@@ -1,5 +1,9 @@
 package MP3;
 
+import MP3.Abstract.Doctor;
+import MP3.Abstract.Patient;
+import MP3.Abstract.Person;
+
 public class Main {
     public static void main(String[] args) {
         // Testing polymorphic method

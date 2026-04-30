@@ -1,4 +1,4 @@
-package MP3;
+package MP3.Dynamic;
 
 public class AssociateProfessor {
 }

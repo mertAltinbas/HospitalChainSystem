@@ -1,4 +1,4 @@
-package MP3;
+package MP3.Abstract;
 
 public class Doctor extends Person {
     private float employeeDiscount;
