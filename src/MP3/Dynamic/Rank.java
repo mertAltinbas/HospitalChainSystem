@@ -27,6 +27,6 @@ public abstract class Rank {
 
     @Override
     public String toString() {
-        return "Class Name: " + this.getClass().getSimpleName();
+        return "Class Name: " + this.getClass().getSimpleName() + " Name: " + this.name;
     }
 }

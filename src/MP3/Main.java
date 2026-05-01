@@ -25,7 +25,7 @@ public class Main {
         if (overlappingMedication.isPrescribed()) System.out.println("Stock: " + overlappingMedication.getClinicalStockQuantity());
 
         // Testing dynamic
-        Rank associateProfessor = new AssociateProfessor(1500.0f, "AssociateProfessor", "dynamic inheritance");
+        Rank associateProfessor = new AssociateProfessor(1500.0f, "Bob", "dynamic inheritance");
         System.out.println(associateProfessor.toString());
         System.out.println("Research Area: " + ((AssociateProfessor) associateProfessor).getResearchArea());
 
